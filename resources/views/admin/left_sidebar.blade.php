@@ -22,9 +22,15 @@
                         <ul class="metismenu list-unstyled" id="side-menu">
 
                             <li>
-                                <a href="" class="waves-effect">
+                                @if(Auth::user()->role === 'admin')
+                                <a href="{{route('admin.dashboard')}}" class="waves-effect">
                                     <span>Dashboard</span>
                                 </a>
+                                @else
+                                <a href="{{route('employees.dashboard')}}" class="waves-effect">
+                                    <span>Dashboard</span>
+                                </a>
+                                @endif
                             </li>
 
                             @if(Auth::user()->role === 'admin')
@@ -34,27 +40,27 @@
                                     <span>Employees</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="javascript: void(0);">All Employees</a></li>
-                                    <li><a href="javascript: void(0);">Add New Employe</a></li>
-                                    <li><a href="javascript: void(0);">Employment Status</a></li>
-                                    <li><a href="javascript: void(0);">Designation</a></li>
-                                    <li><a href="javascript: void(0);">Departments</a></li>
+                                    <li><a href="{{ route('admin.getAllEmployee') }}">All Employees</a></li>
+                                    <li><a href="{{ route('admin.getaddNewEmployee') }}">Add New Employe</a></li>
+                                    <li><a href="{{route('admin.getchangeEmployeePassword')}}">Change Emp password</a></li>
+                                    <!-- <li><a href="javascript: void(0);">Designation</a></li> -->
+                                    <li><a href="{{route('admin.getAllDepartments')}}">Departments</a></li>
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="ri-layout-3-line"></i>
-                                    <span>Payrun</span>
+                                    <span>Payslips</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="true">
 
                                     <li>
-                                        <a href="javascript: void(0);" >Upload Payslips</a>
+                                        <a href="{{route('admin.getuplodePaySlip')}}" >Upload Payslips</a>
                                     </li>
                                     
                                     <li>
-                                        <a href="javascript: void(0);" >All Payslips</a>
+                                        <a href="{{route('admin.getAllEmployeesPaySlips')}}" >All Payslips</a>
                                     </li>
                                 </ul>
                             </li>
@@ -72,7 +78,6 @@
                                     <li><a href="javascript: void(0);">Emergency Contacts</a></li>
                                 </ul>
                             </li>
-
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="ri-layout-3-line"></i>

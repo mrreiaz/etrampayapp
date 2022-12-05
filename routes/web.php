@@ -32,6 +32,17 @@ Route::get('/dashboard/erros', function () { return "eerros ";})->name('noaccess
 */
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/admin/dashboard',  [AdminController::class, 'getDashboard'])->name('admin.dashboard');
+    Route::get('/admin/change-password',  [AdminController::class, 'getChangePassword'])->name('admin.changePassword');
+    Route::get('/admin/profile',  [AdminController::class, 'getProfile'])->name('admin.getprofile');
+    Route::get('/admin/profile/edit',  [AdminController::class, 'getProfileEdit'])->name('admin.getprofileEdit');
+    Route::get('/admin/employee/{id}/view',  [AdminController::class, 'getEmployeeProfileView'])->name('admin.getEmployeeProfileView');
+    Route::get('/admin/employee/{id}/edit',  [AdminController::class, 'getEmployeeProfileEdit'])->name('admin.getEmployeeProfileEdit');
+    Route::get('/admin/all-employee',  [AdminController::class, 'getAllEmployee'])->name('admin.getAllEmployee');
+    Route::get('/admin/add-new-employee',  [AdminController::class, 'getaddNewEmployee'])->name('admin.getaddNewEmployee');
+    Route::get('/admin/change-employee-password',  [AdminController::class, 'getchangeEmployeePassword'])->name('admin.getchangeEmployeePassword');
+    Route::get('/admin/all-departments',  [AdminController::class, 'getAllDepartments'])->name('admin.getAllDepartments');
+    Route::get('/admin/all-employee-payslips',  [AdminController::class, 'getAllEmployeesPaySlips'])->name('admin.getAllEmployeesPaySlips');
+    Route::get('/admin/uplode-payslips',  [AdminController::class, 'getuplodePaySlip'])->name('admin.getuplodePaySlip');
 });
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +51,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
 */
 Route::middleware(['auth','role:employee'])->group(function () {
     Route::get('/employees/dashboard', [UsersController::class, 'getDashboard'])->name('employees.dashboard');
+    Route::get('/employees/change-password',  [AdminController::class, 'getChangePassword'])->name('employees.changePassword');
 });
 /*
 |--------------------------------------------------------------------------

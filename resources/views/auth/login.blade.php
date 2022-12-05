@@ -14,12 +14,14 @@
             <div class="col-12">
                 <input class="form-control" type="email" required="" name="email" placeholder="User email" required autofocus>
             </div>
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <div class="form-group mb-3 row">
             <div class="col-12">
                 <input class="form-control" type="password" required="" name="password" placeholder="Password" required autocomplete="current-password" >
             </div>
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <div class="form-group mb-3 row">
