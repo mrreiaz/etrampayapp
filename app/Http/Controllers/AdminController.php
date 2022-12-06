@@ -89,6 +89,12 @@ class AdminController extends Controller
     }
     
 
+    public function getemployeesPaySlipSearch()
+    {
+        return view('admin.get_emp_payslip_search');
+    }
+    
+
     public function getuplodePaySlip()
     {
         $users = User::orderByRaw('updated_at - created_at DESC')->get();

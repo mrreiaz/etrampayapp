@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -19,7 +20,25 @@ class UsersController extends Controller
     
     public function getDashboard()
     {
-        return view('admin.user_dashboard');
+        return view('user.user_dashboard');
+    }
+    
+    public function getProfile()
+    {
+        
+        $user = Auth::user();
+        return view('user.user_profile',compact('user'));
+    }
+    
+    public function getProfileEdit()
+    {
+        $user = Auth::user();
+        return view('user.get_profile_edit',compact('user'));
+    }
+    
+    public function getAllPaySlips()
+    {
+        return view('user.all_pay_slips');
     }
 
 

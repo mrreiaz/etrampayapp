@@ -42,6 +42,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/admin/change-employee-password',  [AdminController::class, 'getchangeEmployeePassword'])->name('admin.getchangeEmployeePassword');
     Route::get('/admin/all-departments',  [AdminController::class, 'getAllDepartments'])->name('admin.getAllDepartments');
     Route::get('/admin/all-employee-payslips',  [AdminController::class, 'getAllEmployeesPaySlips'])->name('admin.getAllEmployeesPaySlips');
+    Route::get('/admin/employee-payslip-search',  [AdminController::class, 'getemployeesPaySlipSearch'])->name('admin.getemployeesPaySlipSearch');
     Route::get('/admin/uplode-payslips',  [AdminController::class, 'getuplodePaySlip'])->name('admin.getuplodePaySlip');
 });
 /*
@@ -51,7 +52,10 @@ Route::middleware(['auth','role:admin'])->group(function () {
 */
 Route::middleware(['auth','role:employee'])->group(function () {
     Route::get('/employees/dashboard', [UsersController::class, 'getDashboard'])->name('employees.dashboard');
+    Route::get('/employees/profile',  [UsersController::class, 'getProfile'])->name('employees.getprofile');
+    Route::get('/employees/profile/edit',  [UsersController::class, 'getProfileEdit'])->name('employees.getprofileEdit');
     Route::get('/employees/change-password',  [AdminController::class, 'getChangePassword'])->name('employees.changePassword');
+    Route::get('/employees/all-payslips',  [UsersController::class, 'getAllPaySlips'])->name('employees.getallPayslips');
 });
 /*
 |--------------------------------------------------------------------------

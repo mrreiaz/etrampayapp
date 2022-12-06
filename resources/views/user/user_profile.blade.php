@@ -35,7 +35,7 @@
                                                 @if($user->photo != null)
                                                 <img src="{{$user->photo}}" alt="">
                                                 @else
-                                                <img src="{{asset('assets/images/users/avatar-2.jpg')}}" alt="">
+                                                <img src="{{asset('assets/images/users/avatar-4.jpg')}}" alt="">
                                                 @endif
                                             </div>
                                         </div>
@@ -43,14 +43,14 @@
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">First Name</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->firstname}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->firstname}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Last Name</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->lastname}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->lastname}}" disabled>
                                             </div>
                                         </div>
 
@@ -58,77 +58,77 @@
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Employee ID</label>	
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->userid}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->userid}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Username</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->username}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->username}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Email</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->email}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->email}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Department</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->department}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->department}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Type of Job</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->jobtype}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->jobtype}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Gender</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->gender}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->gender}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Date Of Birth</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->dateofbirth}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->dateofbirth}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Join Date</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->joindate}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->joindate}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Phone Number</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" value="{{$user->phone}}">
+                                                <input class="form-control" type="text" placeholder="{{$user->phone}}" disabled>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Address</label>
                                             <div class="col-sm-10">
-                                                <textarea required="" class="form-control" rows="5" spellcheck="false">{{$user->address}}</textarea>
+                                                <textarea required="" class="form-control" rows="5" spellcheck="false" disabled>{{$user->address}}</textarea>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label"> </label>
                                             <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-primary waves-effect waves-light me-1"> Update </button>
+                                                <a href="" class="btn btn-primary waves-effect waves-light me-1"> Edit </a>
                                             </div>
                                         </div>
 
@@ -142,6 +142,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
     
 </div>

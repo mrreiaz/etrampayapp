@@ -55,12 +55,14 @@
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
+                                @if(Auth::user()->role === 'admin')
                                 <!-- item-->
                                 <a class="dropdown-item" href="{{route('admin.getprofile')}}"><i class="ri-user-line align-middle me-1"></i> Profile</a>
                                 <a class="dropdown-item d-block" href="{{route('admin.getprofileEdit')}}"><i class="ri-settings-2-line align-middle me-1"></i> Edit Profile</a>
-                                @if(Auth::user()->role === 'admin')
                                 <a class="dropdown-item d-block" href="{{route('admin.changePassword')}}"><i class="ri-settings-2-line align-middle me-1"></i> Change Password</a>
                                 @else
+                                <a class="dropdown-item" href="{{route('employees.getprofile')}}"><i class="ri-user-line align-middle me-1"></i> Profile</a>
+                                <a class="dropdown-item d-block" href="{{route('employees.getprofileEdit')}}"><i class="ri-settings-2-line align-middle me-1"></i> Edit Profile</a>
                                 <a class="dropdown-item d-block" href="{{route('employees.changePassword')}}"><i class="ri-settings-2-line align-middle me-1"></i> Change Password</a>
                                 @endif
                                 <div class="dropdown-divider"></div>

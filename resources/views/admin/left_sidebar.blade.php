@@ -60,7 +60,7 @@
                                     </li>
                                     
                                     <li>
-                                        <a href="{{route('admin.getAllEmployeesPaySlips')}}" >All Payslips</a>
+                                        <a href="{{route('admin.getemployeesPaySlipSearch')}}" >Payslip Search</a>
                                     </li>
                                 </ul>
                             </li>
@@ -71,7 +71,7 @@
                                     <span>Employees</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="javascript: void(0);">My Profile</a></li>
+                                    <li><a href="{{route('employees.getprofile')}}">My Profile</a></li>
                                     <li><a href="javascript: void(0);">Edit Profile</a></li>
                                     <li><a href="javascript: void(0);">Change Password</a></li>
                                     <li><a href="javascript: void(0);">Address Details</a></li>
@@ -84,13 +84,8 @@
                                     <span>Payslip</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="true">
-
                                     <li>
-                                        <a href="javascript: void(0);" >Last Payslips</a>
-                                    </li>
-                                    
-                                    <li>
-                                        <a href="javascript: void(0);" >All Payslips</a>
+                                        <a href="{{ route('employees.getallPayslips') }}" >All Payslips</a>
                                     </li>
                                 </ul>
                             </li>

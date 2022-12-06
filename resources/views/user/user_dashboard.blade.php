@@ -1,6 +1,19 @@
 
 @extends('admin.app')
     @section('title', 'DASHBOARD')
+
+@section('css')
+<style>
+.card-title i {
+    background: #ebedeb;
+    padding: 5px;
+}
+.card-body p {
+    padding-left: 30px;
+}
+
+</style>
+@endsection
   
  @section('content')
 
@@ -22,28 +35,35 @@
                 <!-- Simple card -->
                 <div class="card">
                     <div class="row no-gutters align-items-center">
-                        <div class="col-md-1" style="margin-left: 20px;">
+                        <div class="col-md-1" style="margin-left: 20px;padding: 20px;">
                             <img class="card-img rounded-circle avatar-xl" src="{{asset('assets/images/small/img-2.jpg')}}" alt="Card image">
                         </div>
                         <div class="col-md-3">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                                <h5 class="card-title"> Name </h5>
+                                <h5 class="card-title"> EMP101 </h5>
+                                <h5 class="card-title"> Phone Nuber </h5>
 
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-
+                                <h5 class="card-title"> <i class=" far fa-clipboard"></i> Development</h5>
+                                <p class="card-text">Dep.</p>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title"> <i class=" far fa-file-alt"></i> Development</h5>
+                                <p class="card-text">Dep.</p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-
+                                <h5 class="card-title"> <i class="ri-map-pin-time-fill"></i> Joining Date</h5>
+                                <p class="card-text">This .</p>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title"> <i class="far fa-calendar-alt"></i> Joining Date</h5>
+                                <p class="card-text">This .</p>
                             </div>
                         </div>
                     </div>

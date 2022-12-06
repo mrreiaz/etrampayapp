@@ -73,8 +73,10 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                    
+                                
+                                <div class="text-center mt-4">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light">Uplode Payslip</button>
+                                </div>
                             </div>
 
                         </form>
