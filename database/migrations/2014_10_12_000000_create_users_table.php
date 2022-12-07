@@ -22,14 +22,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('department')->nullable();
-            $table->enum('jobtype',['full-time','part-time','contract-job'])->nullable(); //
+            $table->enum('department',['IT','HR','Sales','Others'])->nullable();
+            $table->string('jobtype')->nullable(); //
             $table->string('gender')->nullable();
             $table->string('dateofbirth')->nullable();
             $table->string('joindate')->nullable();
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
+            $table->text('paddress')->nullable();
             $table->enum('role',['admin','employee','user'])->default('user');
             $table->enum('status',['active','inactive','suspand'])->default('active'); 
             $table->rememberToken();

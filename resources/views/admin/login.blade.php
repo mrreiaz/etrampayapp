@@ -36,7 +36,7 @@
 
         <div class="form-group mb-0 row mt-2">
             <div class="col-sm-12 mt-3">
-                <a href="auth-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+                <a href="{{route('getForgotPassword')}}" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
             </div>
         </div>
     </form>

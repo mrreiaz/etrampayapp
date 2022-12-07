@@ -33,8 +33,10 @@ Route::get('/dashboard/erros', function () { return "eerros ";})->name('noaccess
 Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/admin/dashboard',  [AdminController::class, 'getDashboard'])->name('admin.dashboard');
     Route::get('/admin/change-password',  [AdminController::class, 'getChangePassword'])->name('admin.changePassword');
+    Route::post('/admin/change-password',  [AdminController::class, 'postChangePassword'])->name('admin.postchangePassword');
     Route::get('/admin/profile',  [AdminController::class, 'getProfile'])->name('admin.getprofile');
     Route::get('/admin/profile/edit',  [AdminController::class, 'getProfileEdit'])->name('admin.getprofileEdit');
+    Route::post('/admin/profile/update',  [AdminController::class, 'getProfileUpdate'])->name('admin.getProfileUpdate');
     Route::get('/admin/employee/{id}/view',  [AdminController::class, 'getEmployeeProfileView'])->name('admin.getEmployeeProfileView');
     Route::get('/admin/employee/{id}/edit',  [AdminController::class, 'getEmployeeProfileEdit'])->name('admin.getEmployeeProfileEdit');
     Route::get('/admin/all-employee',  [AdminController::class, 'getAllEmployee'])->name('admin.getAllEmployee');
@@ -57,6 +59,9 @@ Route::middleware(['auth','role:employee'])->group(function () {
     Route::get('/employees/change-password',  [AdminController::class, 'getChangePassword'])->name('employees.changePassword');
     Route::get('/employees/all-payslips',  [UsersController::class, 'getAllPaySlips'])->name('employees.getallPayslips');
 });
+
+Route::get('/all/forgot-password', [UsersController::class, 'getForgotPassword'])->name('getForgotPassword');
+
 /*
 |--------------------------------------------------------------------------
 | Common Routes

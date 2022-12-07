@@ -40,6 +40,11 @@ class UsersController extends Controller
     {
         return view('user.all_pay_slips');
     }
+    
+    public function getForgotPassword()
+    {
+        return view('user.forgotpassword');
+    }
 
 
 }
