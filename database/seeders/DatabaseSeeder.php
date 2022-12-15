@@ -17,12 +17,7 @@ class DatabaseSeeder extends Seeder
         
         $this->call(UsersTableSeeder::class);
         $this->call(DepartmentsTableSeed::class);
+        $this->call(PayslipSeeder::class);
         
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

@@ -20,27 +20,32 @@
             </div>
         </div>
         <!-- end page title -->
-
+          
+        <form id="myForm" method="GET" action="{{ route('admin.getemployeesPaySlipSearchbyid') }}" >
+            @csrf
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title mb-4"> Employees  </h4>
-                        <form>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label class="form-label">Select EmployeID</label>
-                                        <select class="form-control select2">
+                                        <select class="form-control select2" name="user_id">
                                             <option>Select</option>
-                                            <option value="ds">ds</option>
+                                            @if($users->count() > 0)
+                                                @foreach($users as $user)
+                                                    <option value="{{$user->id}}">{{ $user->userid }}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
 
                                 
                                 <div class="text-center mt-4">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light">Find Employe</button>
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Find Employe</button>
                                 </div>
                             </div>
 
@@ -52,43 +57,6 @@
         </div>
         <!-- end row -->
 
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4"> Name  Payslips List </h4>
-                        <div class="table-responsive">
-                            <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
-                                
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>SL</th>
-                                        <th>Month</th>
-                                        <th style="width: 120px;" class="text-center">Action</th>
-                                    </tr>
-                                </thead><!-- end thead -->
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2022 - January</td>
-                                        <td>
-                                            <div class="button-items">
-                                                <a href="" class="btn btn-info btn-sm waves-effect waves-light">Download</a>
-                                                <a href="" class="btn btn-primary btn-sm waves-effect waves-light">View</a>
-                                                <a href="" class="btn btn-success btn-sm waves-effect waves-light">Edit</a>
-                                                <a href="" class="btn btn-danger btn-sm waves-effect waves-light">Delete</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                        <!-- end -->
-                                </tbody><!-- end tbody -->
-                            </table> <!-- end table -->
-                        </div>
-                    </div><!-- end card -->
-                </div><!-- end card -->
-            </div>
-        </div>
-        <!-- end row -->
     </div>
     
 </div>

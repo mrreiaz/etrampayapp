@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Update Profile</h4>
                                         
-                        <form id="myForm" method="POST" action="{{ route('admin.getProfileUpdate') }}" enctype="multipart/form-data" >
+                        <form id="myForm" method="POST" action="{{ route('admin.postProfileUpdate') }}" enctype="multipart/form-data" >
                             @csrf
                             @if (session('status'))
                             <div class="alert alert-success" role="alert">
@@ -64,14 +64,20 @@
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">First Name</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="text" name="firstname" value="{{$user->firstname}}">
+                                                    <input class="form-control @error('firstname') is-invalid @enderror" type="text" name="firstname" value="{{$user->firstname}}">
+                                                    @error('firstname')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Last Name</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="text" name="lastname" value="{{$user->lastname}}">
+                                                    <input class="form-control @error('lastname') is-invalid @enderror" type="text" name="lastname" value="{{$user->lastname}}">
+                                                    @error('lastname')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -79,26 +85,38 @@
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Employee ID</label>	
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="text"  value="{{$user->userid}}" disabled>
+                                                    <input class="form-control @error('userid') is-invalid @enderror" type="text"  value="{{$user->userid}}" disabled>
+                                                    @error('userid')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Username</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="text" value="{{$user->username}}" disabled>
+                                                    <input class="form-control @error('username') is-invalid @enderror" type="text" value="{{$user->username}}" disabled>
+                                                    @error('username')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="text" name="email" value="{{$user->email}}">
+                                                    <input class="form-control  @error('email') is-invalid @enderror" type="text" name="email" value="{{$user->email}}">
+                                                    @error('email')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="row mb-3">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Department</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label  @error('department') is-invalid @enderror">Department</label>
+                                                    @error('department')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 <div class="col-sm-10">
                                                     <select class="form-select"  name="department">
                                                         <option >Select Department</option>
@@ -111,7 +129,10 @@
                                             </div>
 
                                             <div class="row mb-3">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Type of Job</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label   @error('jobtype') is-invalid @enderror">Type of Job</label>
+                                                    @error('jobtype')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 <div class="col-sm-10">
                                                     <select class="form-select" name="jobtype" >
                                                         <option >Select Type of Job</option>
@@ -123,7 +144,10 @@
                                             </div>                                            
 
                                             <div class="row mb-3">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label">Gender</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label   @error('gender') is-invalid @enderror">Gender</label>
+                                                    @error('gender')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 <div class="col-sm-10">
                                                     <select class="form-select" name="gender" aria-label="Default select">
                                                         <option >Select Gender</option>
@@ -137,14 +161,20 @@
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Date Of Birth</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="date" name="dateofbirth"  value="{{$user->dateofbirth}}">
+                                                    <input class="form-control   @error('dateofbirth') is-invalid @enderror " type="date" name="dateofbirth"  value="{{$user->dateofbirth}}">
+                                                    @error('dateofbirth')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Join Date</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="date"  name="joindate" value="{{$user->joindate}}">
+                                                    <input class="form-control @error('joindate') is-invalid @enderror " type="date"  name="joindate" value="{{$user->joindate}}">
+                                                    @error('joindate')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             
@@ -152,21 +182,30 @@
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Phone Number</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" type="text"  name="phone" value="{{$user->phone}}">
+                                                    <input class="form-control @error('phone') is-invalid @enderror" type="text"  name="phone" value="{{$user->phone}}">
+                                                    @error('phone')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Curren Address</label>
                                                 <div class="col-sm-10">
-                                                    <textarea name="address" class="form-control" rows="5" spellcheck="false">{{$user->address}}</textarea>
+                                                    <textarea name="address" class="form-control @error('address') is-invalid @enderror" rows="5" spellcheck="false">{{$user->address}}</textarea>
+                                                    @error('address')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="row mb-3">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label">Permanent Address</label>
                                                 <div class="col-sm-10">
-                                                    <textarea name="paddress" class="form-control" rows="5" spellcheck="false">{{$user->paddress}}</textarea>
+                                                    <textarea name="paddress" class="form-control  @error('paddress') is-invalid @enderror" rows="5" spellcheck="false">{{$user->paddress}}</textarea>
+                                                    @error('paddress')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </div>
 

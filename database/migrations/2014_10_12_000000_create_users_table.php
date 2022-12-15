@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('userid')->unique();
             $table->string('username')->unique()->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('department',['IT','HR','Sales','Others'])->nullable();

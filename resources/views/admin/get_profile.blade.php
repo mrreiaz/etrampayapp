@@ -33,9 +33,9 @@
                                             <label class="col-sm-2 col-form-label">Profile Picture</label>
                                             <div class="col-sm-10">
                                                 @if($user->photo != null)
-                                                <img src="{{$user->photo}}" alt="">
+                                                <img src="{{$user->photo}}" alt=""  width="200px">
                                                 @else
-                                                <img src="{{asset('assets/images/users/avatar-2.jpg')}}" alt="">
+                                                <img src="{{asset('assets/images/users/avatar-2.jpg')}}"  width="200px" alt="">
                                                 @endif
                                             </div>
                                         </div>
@@ -128,11 +128,7 @@
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label"> </label>
                                             <div class="col-sm-10">
-                                                @if(Auth::user()->userid === $user->userid)
                                                 <a href="{{route('admin.getprofileEdit')}}" class="btn btn-primary waves-effect waves-light me-1"> Edit </a>
-                                                @else
-                                                <a href="{{route('admin.getEmployeeProfileEdit',$user->id)}}" class="btn btn-primary waves-effect waves-light me-1"> Edit </a>
-                                                @endif
                                             </div>
                                         </div>
 

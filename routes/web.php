@@ -36,16 +36,27 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::post('/admin/change-password',  [AdminController::class, 'postChangePassword'])->name('admin.postchangePassword');
     Route::get('/admin/profile',  [AdminController::class, 'getProfile'])->name('admin.getprofile');
     Route::get('/admin/profile/edit',  [AdminController::class, 'getProfileEdit'])->name('admin.getprofileEdit');
-    Route::post('/admin/profile/update',  [AdminController::class, 'getProfileUpdate'])->name('admin.getProfileUpdate');
+    Route::post('/admin/profile/update',  [AdminController::class, 'postProfileUpdate'])->name('admin.postProfileUpdate');
     Route::get('/admin/employee/{id}/view',  [AdminController::class, 'getEmployeeProfileView'])->name('admin.getEmployeeProfileView');
     Route::get('/admin/employee/{id}/edit',  [AdminController::class, 'getEmployeeProfileEdit'])->name('admin.getEmployeeProfileEdit');
+    Route::post('/admin/employee/{id}/update',  [AdminController::class, 'postEmpProfileUpdate'])->name('admin.postEmpProfileUpdate');
+    Route::get('/admin/employee/{id}/delete',  [AdminController::class, 'getEmployeeProfileDelete'])->name('admin.getEmployeeProfileDelete');
+
     Route::get('/admin/all-employee',  [AdminController::class, 'getAllEmployee'])->name('admin.getAllEmployee');
     Route::get('/admin/add-new-employee',  [AdminController::class, 'getaddNewEmployee'])->name('admin.getaddNewEmployee');
+    Route::post('/admin/add-new-employee',  [AdminController::class, 'postaddNewEmployee'])->name('admin.postaddNewEmployee');
+
     Route::get('/admin/change-employee-password',  [AdminController::class, 'getchangeEmployeePassword'])->name('admin.getchangeEmployeePassword');
+    Route::post('/admin/change-employee-password',  [AdminController::class, 'postchangeEmployeePassword'])->name('admin.postchangeEmployeePassword');
+
     Route::get('/admin/all-departments',  [AdminController::class, 'getAllDepartments'])->name('admin.getAllDepartments');
     Route::get('/admin/all-employee-payslips',  [AdminController::class, 'getAllEmployeesPaySlips'])->name('admin.getAllEmployeesPaySlips');
     Route::get('/admin/employee-payslip-search',  [AdminController::class, 'getemployeesPaySlipSearch'])->name('admin.getemployeesPaySlipSearch');
+    Route::get('/admin/employee-payslip-search-by-id',  [AdminController::class, 'getemployeesPaySlipSearchById'])->name('admin.getemployeesPaySlipSearchbyid');
+    Route::get('/admin/employee-payslip/{id}/delete',  [AdminController::class, 'getPaySlipDelete'])->name('admin.userPayslipDelete');
+
     Route::get('/admin/uplode-payslips',  [AdminController::class, 'getuplodePaySlip'])->name('admin.getuplodePaySlip');
+    Route::post('/admin/uplode-payslips',  [AdminController::class, 'postuplodePaySlip'])->name('admin.postuplodePaySlip');
 });
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +67,12 @@ Route::middleware(['auth','role:employee'])->group(function () {
     Route::get('/employees/dashboard', [UsersController::class, 'getDashboard'])->name('employees.dashboard');
     Route::get('/employees/profile',  [UsersController::class, 'getProfile'])->name('employees.getprofile');
     Route::get('/employees/profile/edit',  [UsersController::class, 'getProfileEdit'])->name('employees.getprofileEdit');
-    Route::get('/employees/change-password',  [AdminController::class, 'getChangePassword'])->name('employees.changePassword');
+    Route::post('/employees/profile/edit',  [UsersController::class, 'postProfileEdit'])->name('employees.postprofileEdit');
+
+    Route::get('/employees/change-password',  [UsersController::class, 'getChangePassword'])->name('employees.changePassword');
+    Route::post('/employees/change-password',  [UsersController::class, 'postChangePassword'])->name('employees.postchangePassword');
+
+
     Route::get('/employees/all-payslips',  [UsersController::class, 'getAllPaySlips'])->name('employees.getallPayslips');
 });
 

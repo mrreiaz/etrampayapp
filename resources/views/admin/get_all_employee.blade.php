@@ -36,7 +36,6 @@
                                         <th>Department</th>
                                         <th>Status</th>
                                         <th>Job Type</th>
-                                        <th>Age</th>
                                         <th>Join date</th>
                                         <th style="width: 120px;">Action</th>
                                     </tr>
@@ -59,19 +58,15 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if($user->jobtype === 'full-time')
+                                            @if($user->jobtype === 'Full-Time')
                                             <div class="font-size-13">Full Time</div>
-                                            @elseif($user->jobtype === 'part-time')
+                                            @elseif($user->jobtype === 'Part-Time')
                                             <div class="font-size-13">Part Time</div>
-                                            @elseif($user->jobtype === 'contract-job')
+                                            @elseif($user->jobtype === 'Contract-Job')
                                             <div class="font-size-13">Contract Job</div>
                                             @else 
                                             <div class="font-size-13"> No </div>
                                             @endif
-                                        </td>
-                                        <td>
-                                            <!-- 1991-01-25 date formate must be like this -->
-                                            {{Carbon\Carbon::parse($user->dateofbirth)->age}}
                                         </td>
                                         <td>
                                             {{Carbon\Carbon::parse($user->joindate)->isoFormat('MMMM Do YYYY')}}
@@ -80,7 +75,7 @@
                                             <div class="button-items">
                                                 <a href="{{route('admin.getEmployeeProfileView',$user->id)}}" class="btn btn-primary btn-sm waves-effect waves-light">View</a>
                                                 <a href="{{route('admin.getEmployeeProfileEdit',$user->id)}}" class="btn btn-success btn-sm waves-effect waves-light">Edit</a>
-                                                <a href="" class="btn btn-danger btn-sm waves-effect waves-light">Delete</a>
+                                                <a href="{{ route('admin.getEmployeeProfileDelete',$user->id)}}" id="delete" class="btn btn-danger btn-sm waves-effect waves-light">Delete</a>
                                             </div>
                                         </td>
                                     </tr>

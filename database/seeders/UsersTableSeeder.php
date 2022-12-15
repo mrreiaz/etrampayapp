@@ -53,7 +53,7 @@ class UsersTableSeeder extends Seeder
                 'phone' => '07021656683',
                 'joindate' => '2022-01-25',
                 'address' => 'MY Address',
-                'role' => 'user',
+                'role' => 'employee',
                 'status' => 'active',
                 'remember_token' => "ijdsfhojifkdhgjkhsfdjghbsdfg",
             ],

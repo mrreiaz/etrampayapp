@@ -18,11 +18,12 @@
         <!-- end page title -->
 
 
+
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-4"> Name  Payslips List </h4>
+                        <h4 class="card-title mb-4"> {{$user->userid}}  Payslips List </h4>
                         <div class="table-responsive">
                             <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
                                 
@@ -34,16 +35,54 @@
                                     </tr>
                                 </thead><!-- end thead -->
                                 <tbody>
+                                    @php
+                                    $i = 1;
+                                    @endphp
+                                    @if($userPayslips->count() > 0)
+                                    
+                                    @foreach ($userPayslips as $userPayslip)
                                     <tr>
-                                        <td>1</td>
-                                        <td>2022 - January</td>
+                                        <td>{{$i++}}</td>
+                                        <td>
+                                            {{$userPayslip->year}} - 
+                                            @if($userPayslip->month == 1)
+                                            January
+                                            @elseif($userPayslip->month == 2)
+                                            February
+                                            @elseif($userPayslip->month == 3)
+                                            March
+                                            @elseif($userPayslip->month == 4)
+                                            April
+                                            @elseif($userPayslip->month == 5)
+                                            May
+                                            @elseif($userPayslip->month == 6)
+                                            June
+                                            @elseif($userPayslip->month == 7)
+                                            July
+                                            @elseif($userPayslip->month == 8)
+                                            August 
+                                            @elseif($userPayslip->month == 9)
+                                            September 
+                                            @elseif($userPayslip->month == 10)
+                                            October
+                                            @elseif($userPayslip->month == 11)
+                                            November
+                                            @elseif($userPayslip->month == 12)
+                                            December 
+                                            @endif
+                                        
+                                        </td>
                                         <td>
                                             <div class="button-items">
-                                                <a href="" class="btn btn-info btn-sm waves-effect waves-light">Download</a>
-                                                <a href="" class="btn btn-primary btn-sm waves-effect waves-light">View</a>
+                                                <a href="{{$userPayslip->file}}" download class="btn btn-info btn-sm waves-effect waves-light">Download</a>
+                                                <a href="{{$userPayslip->file}}" target="_blank" class="btn btn-primary btn-sm waves-effect waves-light">View</a>
                                             </div>
                                         </td>
                                     </tr>
+                                    @endforeach
+                                    @else 
+                                    <h2>No Date</h2>
+                                    @endif
                                         <!-- end -->
                                 </tbody><!-- end tbody -->
                             </table> <!-- end table -->

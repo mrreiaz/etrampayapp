@@ -21,6 +21,19 @@
         </div>
         <!-- end page title -->
 
+                        
+                                        
+        <form id="myForm" method="POST" action="{{ route('admin.postuplodePaySlip') }}" enctype="multipart/form-data" >
+            @csrf
+            @if (session('status'))
+            <div class="alert alert-success" role="alert">
+            {{session('status')}}
+            </div>
+            @elseif(session('error'))
+            <div class="alert alert-danger" role="alert">
+            {{session('error')}}
+            </div>
+            @endif
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
@@ -30,22 +43,29 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Select EmployeID</label>
-                                        <select class="form-control select2">
+                                        <label class="form-label  @error('userid') is-invalid @enderror">Select EmployeID</label>
+                                        @error('userid')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        <select class="form-control select2" name="user_id">
                                             <option>Select</option>
                                             @if($users->count() > 0)
                                                 @foreach($users as $user)
-                                                    <option value="{{$user->userid}}">{{ $user->userid }}</option>
+                                                    <option value="{{$user->id}}">{{ $user->userid }}</option>
                                                 @endforeach
                                             @endif
                                         </select>
                                     </div>
                                 </div>
+                                
 
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Select Month</label>
-                                        <select class="form-control select2">
+                                        <label class="form-label @error('month') is-invalid @enderror">Select Month</label>
+                                        @error('month')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        <select class="form-control" name="month">
                                             <option>Select</option>
                                             <option value="1">January</option>
                                             <option value="2">February</option>
@@ -67,15 +87,18 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="card-title">Uplode PDF File  </h4>
-                                            <div class="input-group">
-                                                <input type="file" class="form-control">
+                                            <div class="input-group ">
+                                                <input type="file" class="form-control  @error('file') is-invalid @enderror" name="file"  />
+                                                @error('file')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="text-center mt-4">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light">Uplode Payslip</button>
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Uplode Payslip</button>
                                 </div>
                             </div>
 

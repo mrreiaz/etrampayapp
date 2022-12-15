@@ -72,10 +72,10 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="{{route('employees.getprofile')}}">My Profile</a></li>
-                                    <li><a href="javascript: void(0);">Edit Profile</a></li>
-                                    <li><a href="javascript: void(0);">Change Password</a></li>
-                                    <li><a href="javascript: void(0);">Address Details</a></li>
-                                    <li><a href="javascript: void(0);">Emergency Contacts</a></li>
+                                    <li><a href="{{route('employees.getprofileEdit')}}">Edit Profile</a></li>
+                                    <li><a href="{{route('employees.changePassword')}}">Change Password</a></li>
+                                    <!-- <li><a href="javascript: void(0);">Address Details</a></li>
+                                    <li><a href="javascript: void(0);">Emergency Contacts</a></li> -->
                                 </ul>
                             </li>
                             <li>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Department;
+use App\Models\Payslip;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 
@@ -47,7 +48,6 @@ class AdminController extends Controller
 
         ]);
         return back()->with("status", " Password Changed Successfully");
-        return $request;
 
         //return view('admin.change_password');
     }
@@ -67,8 +67,17 @@ class AdminController extends Controller
     }
     
 
-    public function getProfileUpdate(Request $request)
+    public function postProfileUpdate(Request $request)
     {
+        //return $request->all();
+
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required', 
+            'gender' => 'required', 
+            'dateofbirth' => 'required', 
+            'phone' => 'required', 
+        ]);
         $user = User::find(Auth::user()->id);
 
         if($request->firstname){ $user->firstname = $request->firstname;} 
@@ -108,14 +117,72 @@ class AdminController extends Controller
     public function getEmployeeProfileView($id)
     {
         $user = User::find($id);
-        return view('admin.get_profile',compact('user'));
+        return view('admin.employee_get_profile',compact('user'));
     }
 
     public function getEmployeeProfileEdit($id)
     {
         $user = User::find($id);
-        return view('admin.get_profile_edit',compact('user'));
+        return view('admin.get_emp_profile_edit',compact('user'));
     }
+
+    
+    public function postEmpProfileUpdate(Request $request,$id){
+        
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required', 
+            'gender' => 'required', 
+            'dateofbirth' => 'required', 
+            'phone' => 'required', 
+        ]);
+
+        $user = User::find($id);
+
+        if($request->firstname){ $user->firstname = $request->firstname;} 
+        if($request->lastname){ $user->lastname = $request->lastname;} 
+        if($request->userid){ $user->userid = $request->userid;} 
+        if($request->username){ $user->username = $request->username;} 
+        if($request->department){ $user->department = $request->department;} 
+        if($request->jobtype){ $user->jobtype = $request->jobtype;}  
+        if($request->gender){ $user->gender = $request->gender;} 
+        if($request->dateofbirth){ $user->dateofbirth = $request->dateofbirth;}  
+        if($request->joindate){ $user->joindate = $request->joindate;}  
+        if($request->phone){ $user->phone = $request->phone;}  
+        if($request->address){ $user->address = $request->address;}  
+        if($request->role){ $user->role = $request->role;}  
+        if($request->status){ $user->status = $request->status;}  
+
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('/upload/admin_images/'.$user->photo));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'),$filename);
+            $user['photo'] = '/upload/admin_images/'.$filename;
+        }
+
+        $user->save();
+        $notification = [
+            'message' => 'Profile Updated Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
+
+
+    
+
+    public function getEmployeeProfileDelete($id)
+    {
+        $user = User::find($id)->delete();
+        $notification = [
+            'message' => 'Profile Updated Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
+    
+
     
 
     public function getAllEmployee()
@@ -132,10 +199,70 @@ class AdminController extends Controller
     }
     
 
+    public function postaddNewEmployee(Request $request)
+    {
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required', 
+            'gender' => 'required', 
+            'dateofbirth' => 'required', 
+            'phone' => 'required', 
+        ]);
+        $user = new User();
+        $user['firstname'] = $request->firstname;
+        $user['lastname'] = $request->lastname;
+        $user['userid'] = $request->userid;
+        $user['username'] = $request->username;
+        $user['email'] = $request->email;
+        $user['password'] = Hash::make($request->password);
+        $user['department'] = $request->department;
+        $user['jobtype'] = $request->jobtype;
+        $user['gender'] = $request->gender;
+        $user['dateofbirth'] = $request->dateofbirth;
+        $user['joindate'] = $request->joindate;
+        $user['phone'] = $request->phone;
+        $user['address'] = $request->address;
+        $user['paddress'] = $request->paddress;
+        $user['role'] = 'employee';
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('/upload/admin_images/'.$user->photo));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'),$filename);
+            $user['photo'] = '/upload/admin_images/'.$filename;
+        }
+        $user->save();
+        $notification = [
+            'message' => 'Employee Add Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->route('admin.getAllEmployee')->with($notification);
+    }
+    
+
     public function getchangeEmployeePassword()
     {
         $users = User::orderByRaw('updated_at - created_at DESC')->get();
         return view('admin.get_change_employee_password',compact('users'));
+    }
+    
+
+    public function postchangeEmployeePassword(Request $request)
+    {
+        
+        //return $request->all();
+        $request->validate([
+            'userid' => 'required|int',
+            'newpassword' => 'required',
+            'retypepassword' => 'required',
+        ]);
+        
+        // Update The new password 
+        User::whereId($request->userid)->update([
+            'password' => Hash::make($request->newpassword)
+        ]);
+
+        return back()->with("status", " Password Changed Successfully");
     }
     
 
@@ -154,15 +281,76 @@ class AdminController extends Controller
 
     public function getemployeesPaySlipSearch()
     {
-        return view('admin.get_emp_payslip_search');
+        $users = User::orderByRaw('updated_at - created_at DESC')->get();
+        return view('admin.get_emp_payslip_search',compact('users'));
+    }
+
+    public function getemployeesPaySlipSearchById(Request $request)
+    {
+        $users = User::orderByRaw('updated_at - created_at DESC')->get();
+        $finduser = User::find($request->user_id);
+
+        $userPayslips = Payslip::where('user_id', $request->user_id)->orderByRaw('updated_at - created_at DESC')->get();
+        return view('admin.get_emp_payslip_search_byid',compact('userPayslips','finduser','users'));
     }
     
+
+    // getPaySlipDelete
+    
+
+    public function getPaySlipDelete($id)
+    {
+        $Payslip = Payslip::find($id)->delete();
+        $notification = [
+            'message' => 'Payslip Updated Successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
+    
+
 
     public function getuplodePaySlip()
     {
         $users = User::orderByRaw('updated_at - created_at DESC')->get();
         return view('admin.uplode_paySlip',compact('users'));
     }
+    
+
+
+    public function postuplodePaySlip(Request $request)
+    {
+        
+        //return $request->all();
+        $request->validate([
+            'user_id' => 'required',
+            'month' => 'required', 
+            'file' => 'required|mimes:pdf|max:10000', 
+        ]);
+
+        // return $request->all();
+
+        $payslip = new Payslip();
+        $payslip['user_id'] = $request->user_id;
+        $payslip['month'] = $request->month;
+        $payslip['year'] = date("Y");
+        // $payslip['file'] = $request->month;
+        if ($request->file('file')) {
+            $file = $request->file('file');
+            @unlink(public_path('/upload/payslip/'.$payslip->file));
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/payslip'),$filename);
+            $payslip['file'] = '/upload/payslip/'.$filename;
+        }
+
+        $payslip->save();
+        return back()->with("status", " Successfully");
+
+        // $users = User::orderByRaw('updated_at - created_at DESC')->get();
+        // return view('admin.uplode_paySlip',compact('users'));
+    }
+    
+    
     
     
 }
