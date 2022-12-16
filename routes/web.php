@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 // Route::get('/user/login', [UsersController::class, 'getLogin'])->name('users.login');
 // Route::get('/user/forget-password', [UsersController::class, 'getForgetPassword'])->name('users.forgetpassword');
 // Route::get('/user/dashboard', [UsersController::class, 'getDashboard'])->name('user.dashboard');

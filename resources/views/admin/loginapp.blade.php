@@ -17,7 +17,6 @@
     </head>
 
     <body class="auth-body-bg">
-        <div class="bg-overlay"></div>
         <div class="wrapper-page">
             <div class="container-fluid p-0">
                 <div class="card">

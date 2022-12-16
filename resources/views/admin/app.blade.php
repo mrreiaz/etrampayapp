@@ -4,7 +4,7 @@
         @include("admin.css")
     </head>
 
-    <body data-topbar="dark">
+    <body>
         <!-- Begin page -->
         <div id="layout-wrapper">
             @include("admin.header_top")
