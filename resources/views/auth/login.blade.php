@@ -2,6 +2,9 @@
 
 @extends('admin.loginapp')
     @section('title', 'Login')
+
+
+
  @section('content')
 
 <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>

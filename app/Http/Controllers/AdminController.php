@@ -287,6 +287,11 @@ class AdminController extends Controller
 
     public function getemployeesPaySlipSearchById(Request $request)
     {
+        // return $request->user_id;
+        if($request->user_id == "Select"){
+            return redirect()->back();
+        }
+
         $users = User::orderByRaw('updated_at - created_at DESC')->get();
         $finduser = User::find($request->user_id);
 

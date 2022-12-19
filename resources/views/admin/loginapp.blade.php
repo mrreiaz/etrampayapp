@@ -14,6 +14,13 @@
         <!-- App Css-->
         <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+        <style>
+
+ul.text-sm.text-red-600.space-y-1.mt-2 li {
+    color: red;
+}
+        </style>
+
     </head>
 
     <body class="auth-body-bg">
