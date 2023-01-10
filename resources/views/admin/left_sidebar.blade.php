@@ -64,6 +64,17 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="ri-layout-3-line"></i>
+                                    <span>Paid Leave Request</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="true">
+                                    <li>
+                                        <a href="{{route('admin.getAllLeavesList')}}" >Leave Request ({{App\Models\Leave::where('status','panding')->orderByRaw('updated_at - created_at DESC')->get()->count()}})</a>
+                                    </li>
+                                </ul>
+                            </li>
                             @else
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -86,6 +97,20 @@
                                 <ul class="sub-menu" aria-expanded="true">
                                     <li>
                                         <a href="{{ route('employees.getallPayslips') }}" >All Payslips</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="ri-layout-3-line"></i>
+                                    <span>Paid Leave Request</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="true">
+                                    <li>
+                                        <a href="{{route('employees.getNewLeaveRequest')}}" >New Leave Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('employees.getAllLeaves')}}" >All Paid Leave List</a>
                                     </li>
                                 </ul>
                             </li>

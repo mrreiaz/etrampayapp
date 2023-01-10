@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Department;
 use App\Models\Payslip;
+use App\Models\Leave;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 
@@ -330,6 +331,7 @@ class AdminController extends Controller
         $request->validate([
             'user_id' => 'required',
             'month' => 'required', 
+            'year' => 'required', 
             'file' => 'required|mimes:pdf|max:10000', 
         ]);
 
@@ -338,7 +340,9 @@ class AdminController extends Controller
         $payslip = new Payslip();
         $payslip['user_id'] = $request->user_id;
         $payslip['month'] = $request->month;
-        $payslip['year'] = date("Y");
+        // if($request->month == )
+        $payslip['year'] = $request->year;
+        // $payslip['year'] = date("Y");
         // $payslip['file'] = $request->month;
         if ($request->file('file')) {
             $file = $request->file('file');
@@ -353,6 +357,36 @@ class AdminController extends Controller
 
         // $users = User::orderByRaw('updated_at - created_at DESC')->get();
         // return view('admin.uplode_paySlip',compact('users'));
+    }
+
+    public function getAllLeavesList()
+    {
+        $leaves = Leave::orderByRaw('created_at ASC')->get();
+        //$users = Leave::orderByRaw('updated_at - created_at DESC')->get();
+        return view('admin.leaves_list',compact('leaves'));
+    }
+    
+    
+
+    public function getLeaveRequestDetails($id)
+    {
+        
+        $leave = Leave::findOrFail($id);
+        // return $leave;
+        return view('admin.leave_request_details',compact('leave'));
+    }
+    
+    
+
+    public function getLeaveRequestApproved($id)
+    {
+        
+        $leave = Leave::findOrFail($id);
+        Leave::whereId($id)->update([
+            'status' => 'Approved'
+        ]);
+
+        return back()->with("status", " Leave Request Approved");
     }
     
     

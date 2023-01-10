@@ -84,6 +84,26 @@
                                 </div>
 
                                 <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label @error('year') is-invalid @enderror">Select Year</label>
+                                        @error('month')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                        <select class="form-control" name="year">
+                                            <option>Select</option>
+                                            @php 
+                                                $year = date("Y");
+                                                $yearnext = date("Y")+1;
+                                                $yearlast = date("Y")-1;
+                                            @endphp 
+                                            <option value="{{$yearlast}}">{{$yearlast}}</option>
+                                            <option value="{{$year}}">{{$year}}</option>
+                                            <option value="{{$yearnext}}">{{$yearnext}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="card-title">Uplode PDF File  </h4>

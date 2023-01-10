@@ -61,6 +61,10 @@ Route::middleware(['auth','role:admin'])->group(function () {
 
     Route::get('/admin/uplode-payslips',  [AdminController::class, 'getuplodePaySlip'])->name('admin.getuplodePaySlip');
     Route::post('/admin/uplode-payslips',  [AdminController::class, 'postuplodePaySlip'])->name('admin.postuplodePaySlip');
+
+    Route::get('/employees/all-leaves-request',  [AdminController::class, 'getAllLeavesList'])->name('admin.getAllLeavesList');
+    Route::get('/employees/leave-request-details/{id}',  [AdminController::class, 'getLeaveRequestDetails'])->name('admin.getLeaveRequestDetails');
+    Route::get('/employees/leave-request-approved/{id}',  [AdminController::class, 'getLeaveRequestApproved'])->name('admin.getLeaveRequestApproved');
 });
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +82,11 @@ Route::middleware(['auth','role:employee'])->group(function () {
 
 
     Route::get('/employees/all-payslips',  [UsersController::class, 'getAllPaySlips'])->name('employees.getallPayslips');
+    // New Leave Request
+    Route::get('/employees/new-leave-request',  [UsersController::class, 'getNewLeaveRequest'])->name('employees.getNewLeaveRequest');
+    Route::post('/employees/new-leave-request',  [UsersController::class, 'postNewLeaveRequest'])->name('employees.postNewLeaveRequest');
+
+    Route::get('/employees/all-leaves',  [UsersController::class, 'getAllLeaves'])->name('employees.getAllLeaves');
 });
 
 Route::get('/all/forgot-password', [UsersController::class, 'getForgotPassword'])->name('getForgotPassword');

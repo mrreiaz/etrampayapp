@@ -7,6 +7,7 @@ use Auth;
 use App\Models\User;
 use App\Models\Department;
 use App\Models\Payslip;
+use App\Models\Leave;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -124,6 +125,53 @@ class UsersController extends Controller
     {
         return view('user.forgotpassword');
     }
+    
+    public function getNewLeaveRequest()
+    {
+        return view('user.new_leave_request');
+    }
+    
+    public function postNewLeaveRequest(Request $request)
+    {
+        //return $request->all();
+        $request->validate([
+            'factory_name' => 'required', 
+            'date1' => 'required', 
+            'reason' => 'required', 
+            'description' => 'required', 
+        ]);
+        $userId = Auth::user()->id;
+        //return $request->all();
 
+        $leave = new Leave();
+        $leave->emp_id = $userId;
+        $leave->factory_name = $request->factory_name;
+        $leave->date1 = $request->date1;
+        $leave->date2 = $request->date2;
+        $leave->reason = $request->reason;
+        $leave->reason_text = $request->reason_text;
+        $leave->description = $request->description;
+        //return $leave;
+
+        $leave->save();
+        $notification = [
+            'message' => 'Save Successfully',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->back()->with($notification);
+
+
+    }
+
+    
+    public function getAllLeaves()
+    {
+        $leaves = Leave::where('emp_id',Auth::user()->id)->orderBy('id','asc')->get();
+        return view('user.all_leaves',compact('leaves'));
+    }
+
+
+    
 
 }
